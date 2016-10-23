@@ -1,6 +1,6 @@
 ---
-- name: Create privledged folders
-  become: yes
+- name: Create unprivledged folders
+  become: no
   file:
       path: "{{item}}"
       state: directory
@@ -18,15 +18,15 @@
   - "curl"
   - "ca-certificates"
 
-- name: Download Sysdig
-  become: yes
+- name: Download Sysdig Installation Script
+  become: no
   get_url:
       url: "https://s3.amazonaws.com/download.draios.com/stable/install-sysdig"
       dest: "{{ansible_user_dir}}/{{operations_download_directory}}/install-sysdig"
       mode: 0555
   when: operations_sysdig_install
 
-- name: Install Sysdig
+- name: Run Sysdig Installation Script
   become: yes
   shell: "{{ansible_user_dir}}/{{operations_download_directory}}/install-sysdig"
   args:
@@ -37,6 +37,29 @@
   become: no
   command: /usr/bin/csysdig --version
   when: operations_sysdig_install
+
+- name: Place Loggly Configuration File
+  become: yes
+  template:
+      src: templates/22-loggly.conf.j2
+      dest: /etc/rsyslog.d/22-loggly.conf
+      owner: root
+      group: root
+      mode: 444
+      backup: no
+  when: operations_loggly_install
+
+- name: Restart Syslog
+  become: yes
+  service:
+      name: rsyslog
+      state: restarted
+  when: operations_loggly_install
+
+- name: Test Loggly
+  become: no
+  command: "/usr/bin/logger 'Hello World!'"
+  when: operations_loggly_install
 
 
 

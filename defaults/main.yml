@@ -4,3 +4,7 @@ operations_software_directory: Software
 
 operations_sysdig_install: true
 
+operations_loggly_install: true
+operations_loggly_tag: host-of-interest
+operations_loggly_token: 00000000-0000-0000-0000-00000000000d@00000
+
