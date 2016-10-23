@@ -1,0 +1,8 @@
+---
+aws_download_directory: Downloads
+aws_software_directory: Software
+
+aws_cli_install: true
+
+aws_ecs_cli_install: true
+

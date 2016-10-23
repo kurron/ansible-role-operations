@@ -1,0 +1,4 @@
+---
+- hosts: remote
+  roles:
+  - role: ../../ansible-role-aws
