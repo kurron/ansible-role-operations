@@ -11,7 +11,12 @@ TODO
 Role Variables
 --------------
 
-TODO
+* operations_sysdig_install: true
+* operations_loggly_install: true
+* operations_loggly_tag: host-of-interest
+* operations_loggly_token: 00000000-0000-0000-0000-00000000000d@00000
+* operations_datadog_install: true
+* operations_datadog_api_key: 0000000000000000000000000000000
 
 Dependencies
 ------------
@@ -24,7 +29,7 @@ Example Playbook
 ```
 - hosts: servers
   roles:
-      - { role: kurron.operations, aws_ecs_cli_install: false }
+      - { role: kurron.operations, operations_datadog_api_key: 1234, operations_loggly_token: 1234@12345 }
 ```
 
 License

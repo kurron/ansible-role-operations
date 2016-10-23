@@ -31,10 +31,10 @@ galaxy_info:
     - xenial
 
   galaxy_tags:
-      - development
       - operations
-      - aws
-      - ecs
+      - sysdig
+      - datadog
+      - loggly
 
 dependencies: []
   # List your role dependencies here, one per line.
