@@ -8,3 +8,7 @@ operations_loggly_install: true
 operations_loggly_tag: host-of-interest
 operations_loggly_token: 00000000-0000-0000-0000-00000000000d@00000
 
+operations_datadog_install: true
+#operations_datadog_api_key: change-me
+operations_datadog_api_key: 4a2ad6741d78c9f690510083065a0bff
+

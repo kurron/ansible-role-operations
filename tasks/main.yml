@@ -17,6 +17,8 @@
   with_items:
   - "curl"
   - "ca-certificates"
+  - "apt-transport-https"
+  - "python-apt"
 
 - name: Download Sysdig Installation Script
   become: no
@@ -61,5 +63,48 @@
   command: "/usr/bin/logger 'Hello World!'"
   when: operations_loggly_install
 
+- name: Add Datadog Repository Key
+  become: yes
+  apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: C7A7DA52
+      state: present
+  when: operations_datadog_install
+
+- name: Add Datadog Repository
+  become: yes
+  apt_repository:
+      repo: 'deb https://apt.datadoghq.com/ stable main'
+      update_cache: yes
+      state: present
+  when: operations_datadog_install
+
+- name: Install Datadog Package
+  become: yes
+  package:
+      name: "{{item}}"
+      state: present
+      allow_unauthenticated: yes
+  with_items:
+  - "datadog-agent"
+  when: operations_datadog_install
+
+- name: Place Datadog Configuration File
+  become: yes
+  template:
+      src: templates/datadog.conf.j2
+      dest: /etc/dd-agent/datadog.conf
+      owner: root
+      group: root
+      mode: 444
+      backup: no
+  when: operations_datadog_install
+
+- name: Restart Datadog
+  become: yes
+  service:
+      name: datadog-agent
+      state: restarted
+  when: operations_datadog_install
 
 
