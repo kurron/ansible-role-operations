@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Installation of tools than any self-respecting AWS command-line user loves and needs.
+Installation of tools than any self-respecting Operation person loves and needs.
 
 Requirements
 ------------
@@ -11,8 +11,7 @@ TODO
 Role Variables
 --------------
 
-* aws_cli_install: true
-* aws_ecs_cli_install: true
+TODO
 
 Dependencies
 ------------
@@ -25,7 +24,7 @@ Example Playbook
 ```
 - hosts: servers
   roles:
-      - { role: kurron.aws, aws_ecs_cli_install: false }
+      - { role: kurron.operations, aws_ecs_cli_install: false }
 ```
 
 License
