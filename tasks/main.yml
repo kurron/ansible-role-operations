@@ -97,12 +97,12 @@
       group: root
       mode: 444
       backup: no
-  when: operations_datadog_install
+  when: operations_datadog_install and (ansible_distribution != "CentOS")
 
 - name: Restart Datadog
   become: yes
   service:
       name: datadog-agent
       state: restarted
-  when: operations_datadog_install
+  when: operations_datadog_install and (ansible_distribution != "CentOS")
 
