@@ -1,7 +1,4 @@
 ---
-operations_download_directory: Downloads
-operations_software_directory: Software
-
 operations_sysdig_install: true
 
 operations_loggly_install: true

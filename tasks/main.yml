@@ -1,36 +1,15 @@
 ---
-- name: Create unprivledged folders
-  become: no
-  file:
-      path: "{{item}}"
-      state: directory
-      mode: 0755
-      recurse: yes
-  with_items:
-  - "{{ansible_user_dir}}/{{operations_download_directory}}"
-
-- name: Install Required Packages
-  become: yes
-  package:
-      name: "{{item}}"
-      state: present
-  with_items:
-  - "curl"
-  - "ca-certificates"
-  - "apt-transport-https"
-  - "python-apt"
-
 - name: Download Sysdig Installation Script
   become: no
   get_url:
       url: "https://s3.amazonaws.com/download.draios.com/stable/install-sysdig"
-      dest: "{{ansible_user_dir}}/{{operations_download_directory}}/install-sysdig"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}/install-sysdig"
       mode: 0555
   when: operations_sysdig_install
 
 - name: Run Sysdig Installation Script
   become: yes
-  shell: "{{ansible_user_dir}}/{{operations_download_directory}}/install-sysdig"
+  shell: "{{ansible_user_dir}}/{{base_download_directory}}/install-sysdig"
   args:
       creates: "/usr/bin/csysdig"
   when: operations_sysdig_install
@@ -69,7 +48,7 @@
       keyserver: keyserver.ubuntu.com
       id: C7A7DA52
       state: present
-  when: operations_datadog_install
+  when: operations_datadog_install and (ansible_distribution == "Ubuntu")
 
 - name: Add Datadog Repository
   become: yes
@@ -77,7 +56,18 @@
       repo: 'deb https://apt.datadoghq.com/ stable main'
       update_cache: yes
       state: present
-  when: operations_datadog_install
+  when: operations_datadog_install and (ansible_distribution == "Ubuntu")
+
+- name: Add Datadog Repository
+  become: yes
+  yum_repository:
+      name: datadog
+      description: "Datadog monitoring agent"
+      baseurl: "https://yum.datadoghq.com/rpm/x86_64/"
+      gpgkey: "https://yum.datadoghq.com/DATADOG_RPM_KEY.public"
+      gpgcheck: yes
+      state: present
+  when: operations_datadog_install and (ansible_distribution == "Fedora")
 
 - name: Install Datadog Package
   become: yes
@@ -87,7 +77,16 @@
       allow_unauthenticated: yes
   with_items:
   - "datadog-agent"
-  when: operations_datadog_install
+  when: operations_datadog_install and (ansible_distribution == "Ubuntu")
+
+- name: Install Datadog Package
+  become: yes
+  package:
+      name: "{{item}}"
+      state: present
+  with_items:
+  - "datadog-agent"
+  when: operations_datadog_install and (ansible_distribution == "Fedora")
 
 - name: Place Datadog Configuration File
   become: yes
@@ -106,5 +105,4 @@
       name: datadog-agent
       state: restarted
   when: operations_datadog_install
-
 
