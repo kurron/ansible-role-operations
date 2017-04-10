@@ -8,3 +8,5 @@ operations_loggly_token: 00000000-0000-0000-0000-00000000000d@00000
 operations_datadog_install: true
 operations_datadog_api_key: 0000000000000000000000000000000
 
+# get latest release via curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+kubernetetes_release = v1.6.1

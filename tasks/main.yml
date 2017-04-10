@@ -7,6 +7,13 @@
   with_items:
   - "docker-py"
 
+- name: Install Kubernetes' kubectl
+  become: yes
+  get_url:
+      url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubernetetes_release }}/bin/linux/amd64/kubectl"
+      dest: "/usr/local/bin/kubectl"
+      mode: 0555
+
 - name: Download Sysdig Installation Script
   become: no
   get_url:
