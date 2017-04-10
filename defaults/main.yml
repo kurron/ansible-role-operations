@@ -13,3 +13,6 @@ kubernetetes_release = v1.6.1
 
 # get latest release from https://github.com/kubernetes/kops/releases
 kops_release = 1.5.3
+
+# get latest release from https://stedolan.github.io/jq/
+jq_release = jq-1.5

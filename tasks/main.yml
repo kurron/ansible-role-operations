@@ -21,6 +21,13 @@
       dest: "/usr/local/bin/kops"
       mode: 0555
 
+- name: Install jq
+  become: yes
+  get_url:
+      url: "https://github.com/stedolan/jq/releases/download/{{ jq_release }}/jq-linux64"
+      dest: "/usr/local/bin/jq"
+      mode: 0555
+
 - name: Download Sysdig Installation Script
   become: no
   get_url:
