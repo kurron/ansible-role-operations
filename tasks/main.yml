@@ -1,4 +1,12 @@
 ---
+- name: Install Python Packages
+  become: yes
+  pip:
+      name: "{{item}}"
+      state: latest
+  with_items:
+  - "docker-py"
+
 - name: Download Sysdig Installation Script
   become: no
   get_url:
