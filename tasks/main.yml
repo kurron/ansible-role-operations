@@ -1,4 +1,12 @@
 ---
+- name: Install Python Packages
+  become: yes
+  pip:
+      name: "{{item}}"
+      state: latest
+  with_items:
+  - "localstack"
+
 - name: Install Kubernetes' kubectl
   become: yes
   get_url:
