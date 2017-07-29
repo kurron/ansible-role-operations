@@ -135,3 +135,23 @@
       state: restarted
   when: operations_datadog_install and (ansible_distribution != "CentOS")
 
+- name: Download Falco Installation Script
+  become: no
+  get_url:
+      url: "https://s3.amazonaws.com/download.draios.com/stable/install-falco"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}/install-falco"
+      mode: 0555
+  when: operations_falco_install
+
+- name: Run Falco Installation Script
+  become: yes
+  shell: "{{ansible_user_dir}}/{{base_download_directory}}/install-falco"
+  args:
+      creates: "/usr/bin/falco"
+  when: operations_falco_install
+
+- name: Test Falco
+  become: no
+  command: /usr/bin/falco --version
+  when: operations_falco_install
+

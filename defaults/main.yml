@@ -1,5 +1,6 @@
 ---
 operations_sysdig_install: true
+operations_falco_install: true
 
 operations_loggly_install: true
 operations_loggly_tag: host-of-interest
