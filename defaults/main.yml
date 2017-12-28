@@ -10,7 +10,7 @@ operations_datadog_install: true
 operations_datadog_api_key: 0000000000000000000000000000000
 
 # get latest release via curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
-kubernetetes_release: v1.8.5
+kubernetetes_release: v1.9.0
 
 # get latest release from https://github.com/kubernetes/kops/releases
 kops_release: 1.8.0
