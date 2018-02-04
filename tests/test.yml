@@ -1,4 +1,4 @@
 ---
-- hosts: remote
+- hosts: localhost
   roles:
-  - role: ../../ansible-role-operations
+  - { role: kurron.operations, operations_loggly_install: false, operations_datadog_install: false }
