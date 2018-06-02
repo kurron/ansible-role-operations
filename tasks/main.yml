@@ -14,6 +14,23 @@
       dest: "/usr/local/bin/kubectl"
       mode: 0555
 
+- name: Grab Helm Tarball
+  become: no
+  unarchive:
+      src: "https://storage.googleapis.com/kubernetes-helm/helm-{{ helm_release }}-linux-amd64.tar.gz"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}"
+      copy: no
+      mode: 0444
+      creates: "{{ansible_user_dir}}/{{base_download_directory}}/linux-amd64/LICENSE"
+
+- name: Copy Helm Binary
+  become: yes
+  copy:
+      src: "{{ansible_user_dir}}/{{base_download_directory}}/linux-amd64/helm"
+      dest: "/usr/local/bin"
+      mode: 0555
+      backup: no
+
 - name: Install Kubernetes' kops
   become: yes
   get_url:
