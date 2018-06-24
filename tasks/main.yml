@@ -27,7 +27,7 @@
   become: yes
   copy:
       src: "{{ansible_user_dir}}/{{base_download_directory}}/linux-amd64/helm"
-      dest: "/usr/local/bin"
+      dest: "/usr/local/bin/helm"
       mode: 0555
       backup: no
 
