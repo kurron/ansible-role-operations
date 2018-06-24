@@ -20,7 +20,7 @@
       src: "https://storage.googleapis.com/kubernetes-helm/helm-{{ helm_release }}-linux-amd64.tar.gz"
       dest: "{{ansible_user_dir}}/{{base_download_directory}}"
       copy: no
-      mode: 0444
+      mode: 0555
       creates: "{{ansible_user_dir}}/{{base_download_directory}}/linux-amd64/LICENSE"
 
 - name: Copy Helm Binary
