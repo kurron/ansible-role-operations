@@ -28,6 +28,7 @@
   copy:
       src: "{{ansible_user_dir}}/{{base_download_directory}}/linux-amd64/helm"
       dest: "/usr/local/bin/helm"
+      remote_src: yes
       mode: 0555
       backup: no
 
