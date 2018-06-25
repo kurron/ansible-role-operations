@@ -93,7 +93,7 @@
   become: yes
   apt_key:
       keyserver: keyserver.ubuntu.com
-      id: C7A7DA52
+      id: 382E94DE
       state: present
   when: operations_datadog_install and (ansible_distribution == "Ubuntu")
 
