@@ -6,6 +6,7 @@
       state: latest
   with_items:
   - "localstack"
+  - "awscli-local"
 
 - name: Install Kubernetes' kubectl
   become: yes
