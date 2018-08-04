@@ -20,3 +20,6 @@ kops_release: 1.9.1
 
 # get latest release from https://stedolan.github.io/jq/
 jq_release: jq-1.5
+
+# check latest release at https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
+iam_authenticator_release: 1.10.3/2018-07-26
