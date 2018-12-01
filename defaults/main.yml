@@ -19,7 +19,7 @@ helm_release: v2.11.0
 kops_release: 1.10.0
 
 # get latest release from https://stedolan.github.io/jq/
-jq_release: jq-1.5
+jq_release: jq-1.6
 
 # check latest release at https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 iam_authenticator_release: 1.10.3/2018-07-26
