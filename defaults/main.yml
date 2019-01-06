@@ -22,4 +22,4 @@ kops_release: 1.11.0
 jq_release: jq-1.6
 
 # check latest release at https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
-iam_authenticator_release: 1.10.3/2018-07-26
+iam_authenticator_release: 1.11.5/2018-12-06
