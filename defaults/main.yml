@@ -16,7 +16,7 @@ kubernetetes_release: v1.13.1
 helm_release: v2.12.1
 
 # get latest release from https://github.com/kubernetes/kops/releases
-kops_release: 1.10.0
+kops_release: 1.11.0
 
 # get latest release from https://stedolan.github.io/jq/
 jq_release: jq-1.6
